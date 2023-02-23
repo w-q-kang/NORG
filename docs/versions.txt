@@ -1,0 +1,2 @@
+general versioning information
+0.3.0 - 23.02.2023 - first published version
