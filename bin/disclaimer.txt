@@ -1,5 +1,0 @@
-I provide a checksum for the executable so you can check if your download worked.
-After downloading you should check the file with an antivirus scanner.
-A checksum cannot guarantee that the file hasn't been tampered with
-because who is able to change the executable will also be able to change the checksum file.
-However, it may be easier (for me) to see if the checksum changed when inspecting the repo...
