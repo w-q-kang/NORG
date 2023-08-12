@@ -16,10 +16,12 @@ You should compile the source code with C++11 or later (I prefer C++17). To avoi
 
 - execute the following code:
 
+```
 g++.exe -Wall -fexceptions -g -O2 -std=c++17 -Og -Iinclude -c main.cpp -o obj\main.o
 g++.exe -Wall -fexceptions -g -O2 -std=c++17 -Og -Iinclude -c src\Basics.cpp -o obj\src\Basics.o
 g++.exe -Wall -fexceptions -g -O2 -std=c++17 -Og -Iinclude -c src\Cell.cpp -o obj\src\Cell.o
 g++.exe  -o bin\NORG.exe obj\main.o obj\src\Basics.o obj\Debug\src\Cell.o  -Wl,--stack,25000000  
+```
 
 If you are a windows user, you may instead execute the make.bat file from the directory in which it resides.
 
