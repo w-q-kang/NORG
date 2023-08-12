@@ -10,7 +10,27 @@ I provide an interpreter written in C++, currently source code and windows execu
 
 ## Code
 
-You should compile the source code with C++11 or later. To avoid crashes on programs that define a 'large' cube (see docs), set linker option -Wl,--stack,25000000.
+You should compile the source code with C++11 or later (I prefer C++17). To avoid crashes on programs that define a 'large' cube (see docs), set linker option -Wl,--stack,25000000. Thus to get a compiled exe with name NORG.exe proceed as follows:
+
+- create directories obj, obj/src and bin
+
+- execute the following code:
+
+g++.exe -Wall -fexceptions -g -O2 -std=c++17 -Og -Iinclude -c main.cpp -o obj\main.o
+g++.exe -Wall -fexceptions -g -O2 -std=c++17 -Og -Iinclude -c src\Basics.cpp -o obj\src\Basics.o
+g++.exe -Wall -fexceptions -g -O2 -std=c++17 -Og -Iinclude -c src\Cell.cpp -o obj\src\Cell.o
+g++.exe  -o bin\NORG.exe obj\main.o obj\src\Basics.o obj\Debug\src\Cell.o  -Wl,--stack,25000000  
+
+If you are a windows user, you may instead execute the make.bat file from the directory in which it resides.
+
+After successfully compiling you should be all set.
+Try executing a sample program like so:
+
+./bin/NORG.exe samples/greeting.norg
+
+Note that there is no program input from standard input, you have to create a text file in the same directory as the .norg file, see documentation.
+
+
 
 ## Motivation
 Why write an esolang?  
