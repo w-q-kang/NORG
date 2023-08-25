@@ -7,31 +7,57 @@ NORG is an esolang that doesn't try to be as hard as BF or even Malbolge but rat
 
 I provide an interpreter written in C++, currently source code and windows executable.
 
+Note that there is no program input from standard input, you have to create a text file in the same directory as the .norg file, see documentation.
 
-## Code
 
-You should compile the source code with C++11 or later (I prefer C++17). To avoid crashes on programs that define a 'large' cube (see docs), set linker option -Wl,--stack,25000000. Thus to get a compiled exe with name NORG.exe proceed as follows:
+## Build
 
-- create directories obj, obj/src and bin
+You should compile the source code with C++11 or later (I prefer C++17). To avoid crashes on programs that define a 'large' cube (see docs), increase the stack size with the corresponding linker option, e.g. `-Wl,--stack,25000000` (g++) or `-Wl,-stack_size -Wl,0x1000000` (clang++, hexadecimal). 
 
-- execute the following code:
+### Windows
+Run the build script:
 
+```batch
+make.bat
 ```
+
+Alternatively, create directories `obj`, `obj/src`, and `bin`, then execute the following commands
+
+```batch
 g++.exe -Wall -fexceptions -g -std=c++17 -Og -Iinclude -c main.cpp -o obj\main.o
 g++.exe -Wall -fexceptions -g -std=c++17 -Og -Iinclude -c src\Basics.cpp -o obj\src\Basics.o
 g++.exe -Wall -fexceptions -g -std=c++17 -Og -Iinclude -c src\Cell.cpp -o obj\src\Cell.o
-g++.exe  -o bin\NORG.exe obj\main.o obj\src\Basics.o obj\Debug\src\Cell.o  -Wl,--stack,25000000  
+g++.exe  -o bin\NORG.exe obj\main.o obj\src\Basics.o obj\Debug\src\Cell.o  -Wl,--stack,25000000
 ```
 
-If you are a windows user, you may instead execute the make.bat file from the directory in which it resides.
+After successfully compiling you should be all set. Try executing a sample program like so:
 
-After successfully compiling you should be all set.
-Try executing a sample program like so:
-
+```batch
 ./bin/NORG.exe samples/greeting.norg
+```
 
-Note that there is no program input from standard input, you have to create a text file in the same directory as the .norg file, see documentation.
 
+### macOS/Linux
+This requires `clang++` to be installed. Run the build script:
+
+```shell
+./make.sh
+```
+
+Alternatively, create directories `obj`, `obj/src`, and `bin`, then execute the following commands
+
+```shell
+clang++ -Wall -fexceptions -g -std=c++17 -Og -Iinclude -c main.cpp -o obj/main.o
+clang++ -Wall -fexceptions -g -std=c++17 -Og -Iinclude -c src/Basics.cpp -o obj/src/Basics.o
+clang++ -Wall -fexceptions -g -std=c++17 -Og -Iinclude -c src/Cell.cpp -o obj/src/Cell.o
+clang++ -o bin/norg obj/main.o obj/src/Basics.o obj/src/Cell.o -Wl,-stack_size -Wl,0x1000000
+```
+
+After successfully compiling you should be all set. Try executing a sample program like so:
+
+```shell
+bin/norg samples/greeting.norg
+```
 
 
 ## Motivation
